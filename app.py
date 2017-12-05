@@ -65,9 +65,7 @@ def makeWebhookResult(req):
         detail.append(entry)
         book_record[phone] = num
 
-        speech = "Great, I will book a " + bed + " room in " + branch + " from " + check_in_date + " \
-        to " + check_out_date + " for you. Your phone is " + phone + ". Your cost will be \
-        " + str(int(branch_price[branch])+int(room_price[bed])) + " dollars per day."
+        speech = "Great, I will book a " + bed + " room in " + branch + " from " + check_in_date + " to " + check_out_date + " for you. Your phone is " + phone + ". Your cost will be " + str(int(branch_price[branch])+int(room_price[bed])) + " dollars per day."
 
         print("Response:")
         print(speech)
@@ -79,15 +77,16 @@ def makeWebhookResult(req):
             # "contextOut": [],
             "source": "apiai-onlinestore-shipping"
             }
-    elif req.get("result").get("action") == "book.room":
+    elif req.get("result").get("action") == "check.book":
         result = req.get("result")
         parameters = result.get("parameters")
         phone = parameters.get("phone")
         
         key =book_record[phone]
+        print(key)
+        print(detail[key])
 
-        speech = "Great, You have booked a " + detail[key][0] + " room in " + detail[key][1] + " from " + detail[key][2] + " \
-        to " + detail[key][3] + "."
+        speech = "Great, You have booked a " + detail[key][0] + " room in " + detail[key][1] + " from " + detail[key][2] + " to " + detail[key][3] + "."
 
         print("Response:")
         print(speech)
