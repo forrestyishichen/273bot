@@ -39,7 +39,7 @@ def makeWebhookResult(req):
         branch = parameters.get("branch")
         bed = parameters.get("bed")
 
-        speech = "The cost of a " + bed + " room in " + branch + " is " + float(float(branch_price[branch])+float(room_price[bed])) + " dollars."
+        speech = "The cost of a " + bed + " room in " + branch + " is " + str(int(branch_price[branch])+int(room_price[bed])) + " dollars."
 
         print("Response:")
         print(speech)
@@ -67,7 +67,7 @@ def makeWebhookResult(req):
 
         speech = "Great, I will book a " + bed + " room in " + branch + " from " + check_in_date + " \
         to " + check_out_date + " for you. Your phone is " + phone + ". Your cost will be \
-        " + float(float(branch_price[branch])+float(room_price[bed])) + " dollars per day."
+        " + str(int(branch_price[branch])+int(room_price[bed])) + " dollars per day."
 
         print("Response:")
         print(speech)
