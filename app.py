@@ -14,6 +14,8 @@ app = Flask(__name__)
 
 book_record = {}
 detail = []
+branch_price = {'San Francisco':60.00, 'San Mateo':50.00, 'Palo Alto':100.00, 'Cupertino':80.00, 'San Jose':0.00}
+room_price = {'single':150.00, 'queen':200.00, 'king':200.00, 'twin':200.00, 'double-double':300.00, 'studio':500.00}
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -31,8 +33,6 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    branch_price = {'San Francisco':60.00, 'San Mateo':50.00, 'Palo Alto':100.00, 'Cupertino':80.00, 'San Jose':0.00}
-    room_price = {'single':150.00, 'queen':200.00, 'king':200.00, 'twin':200.00, 'double-double':300.00, 'studio':500.00}
     if req.get("result").get("action") == "check.price":
         result = req.get("result")
         parameters = result.get("parameters")
@@ -83,8 +83,6 @@ def makeWebhookResult(req):
         phone = parameters.get("phone")
         
         key =book_record[phone]
-        print(key)
-        print(detail[key])
 
         speech = "Great, You have booked a " + detail[key][0] + " room in " + detail[key][1] + " from " + detail[key][2] + " to " + detail[key][3] + "."
 
