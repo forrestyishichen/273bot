@@ -28,26 +28,29 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "shipping.cost":
+    if req.get("result").get("action") == "check.price":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        branch = parameters.get("branch")
+        bed = parameters.get("bed")
+
+        branch_price = {'San Francisco':60.00, 'San Mateo':50.00, 'Palo Alto':100.00, 'Cupertino':80.00, 'San Jose':0.00}
+        room_price = {'single':150.00, 'queen':200.00, 'king':200.00, 'twin':200.00, 'double-double':300.00, 'studio':500.00}
+
+        speech = "The cost of a " + bed + " room in " + branch + " is " + str(float(branch_price[branch])+float(room_price[bed])) + " dollars."
+
+        print("Response:")
+        print(speech)
+
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            # "contextOut": [],
+            "source": "apiai-onlinestore-shipping"
+            }
+    else:
         return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    zone = parameters.get("shipping-zone")
-
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-
-    print("Response:")
-    print(speech)
-
-    return {
-        "speech": speech,
-        "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
-    }
 
 
 if __name__ == '__main__':
