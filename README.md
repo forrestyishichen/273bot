@@ -1,5 +1,5 @@
-#How to Provide Replies about Shipping Costs via Api.ai Webhook
+#Cmpe 273 Hotel chatbot
 
-This example shows how you can use Api.ai webhook to provide different shipping costs depending on the world region.
+1. app.py (server)
 
-<a href="https://heroku.com/deploy" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg"></a>
+2. bot.py (bot connection)
