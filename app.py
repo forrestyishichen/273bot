@@ -83,8 +83,10 @@ def makeWebhookResult(req):
         phone = parameters.get("phone")
         
         key =book_record[phone]
-
-        speech = "Great, You have booked a " + detail[key][0] + " room in " + detail[key][1] + " from " + detail[key][2] + " to " + detail[key][3] + "."
+        if key is None:
+            speech = "I'm sorry, I didn't find the corresponding record!"
+        else:
+            speech = "Great, You have booked a " + detail[key][0] + " room in " + detail[key][1] + " from " + detail[key][2] + " to " + detail[key][3] + "."
 
         print("Response:")
         print(speech)
